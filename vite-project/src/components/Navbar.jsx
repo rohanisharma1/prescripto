@@ -60,15 +60,28 @@ const Navbar = () => {
             <img  className='w-2.5 'src={assets.dropdown_icon} alt=''/>
             <div className='absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
             <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'> 
-              <p  onClick={() => navigate('my-profile')} className='hover:text-black cursor-pointer'>My Profile</p>
-              <p onClick={() => navigate('my-appiontment')} className='hover:text-black cursor-pionter'> My Appointment</p>
+              <p  onClick={() => navigate('/my-profile')} className='hover:text-black cursor-pointer'>My Profile</p>
+              <p onClick={() => navigate('/my-appointment')} className='hover:text-black cursor-pionter'> My Appointment</p>
               <p  onClick= {() => setToken(false)}className='hover:text-black cursor-pointer'> Logout</p>
             </div>
           </div>
         </div>
           : <button onClick={()=>navigate('/login')}>Create account</button>
         }
-        
+        <img  onClick={() =>setShowMenu(true)}className='w-6 md:hidden' src={assets.menu_icon} alt=""/>
+        {/*------Moblie menu----*/}
+        <div className='${showMenu ? "fixed w-full" : "h-0 w-0"}  md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white trasition-all'>
+          <div className='flex items-center justify-between px-5 py-6'>
+            <img src={assets.logo} alt=''/>
+            <img onClick= {() =>setShowMenu(false)} src={assets.cross_icon} alt=''/>
+          </div>
+          <ul className='flex flex-col item-center gap-2 mt-5 px-5 text-lg font-medium'>
+            <NavLink to ='/'>Home</NavLink>
+            <NavLink to='/doctors'>All DOCTORS</NavLink>
+            <NavLink to='/about'>ABOUT</NavLink>
+            <NavLink to='/contact'>CONTACT </NavLink>
+          </ul> 
+        </div>
         </div>
     </div>
   );
